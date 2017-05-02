@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>event delegation</title>
+    <style media="screen">
+      .toggler {
+        display: inline-block;
+        margin-right: 10px;
+        width: 50px;
+        height: 30px;
+        background: #A9A9A9;
+        border-radius: 3px;
+        text-align: center;
+      }
+
+      .highlight {
+        background: green;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="toggleGroup">
+      <div class="toggler"><span>a</span></div>
+      <div class="toggler"><span>b</span></div>
+      <div class="toggler"><span>c</span></div>
+      <div class="toggler"><span>d</span></div>
+      <div class="toggler"><span>e</span></div>
+      <div class="toggler"><span>f</span></div>
+    </div>
+    <script type="text/javascript">
+      let selectedDiv;
+      const toggleGroup = document.querySelector('#toggleGroup')
+      toggleGroup.onclick = function (e) {
+        let target = e.target.closest('div')
+        if (target.tagName !== 'DIV') return
+        highlight(target)
+      }
+      function highlight (div) {
+        if (selectedDiv) {
+          selectedDiv.classList.remove('highlight')
+        }
+        selectedDiv = div
+        selectedDiv.classList.add('highlight')
+      }
+    </script>
+  </body>
+</html>
